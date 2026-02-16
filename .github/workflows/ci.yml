@@ -16,4 +16,11 @@ jobs:
         run: ls
 
       - name: Success message
-        run: echo "CI pipeline running successfully!"
+        run: echo "CI pipeline running successfully!"   
+        
+      - name: Send Slack Notification
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data '{"text":"CI Pipeline completed successfully 🚀"}' \
+          ${{ secrets.SLACK_WEBHOOK }}
+
